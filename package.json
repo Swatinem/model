@@ -1,0 +1,26 @@
+{
+  "name": "model",
+  "private": true,
+  "description": "transparent ES5 models",
+  "version": "0.0.1",
+  "keywords": [],
+  "main": "./index",
+  "maintainers": [
+    "Arpad Borsos <arpad.borsos@googlemail.com> (http://swatinem.de)"
+  ],
+  "dependencies": {
+    "emitter-component": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "jscoverage": "*",
+    "coveralls": "*",
+    "mocha-lcov-reporter": "*"
+  },
+  "scripts": {
+    "test": "make test && make test-coveralls"
+  },
+  "repository": "git://github.com/Swatinem/model.git",
+  "license": "LGPLv3"
+}

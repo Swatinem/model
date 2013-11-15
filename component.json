@@ -1,0 +1,15 @@
+{
+  "name": "model",
+  "repo": "Swatinem/model",
+  "version": "0.0.1",
+  "description": "transparent ES5 models",
+  "keywords": [],
+  "main": "lib/index.js",
+  "scripts": [
+    "lib/index.js"
+  ],
+  "dependencies": {
+    "component/emitter": "*"
+  },
+  "license": "LGPLv3"
+}
