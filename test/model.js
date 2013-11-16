@@ -69,6 +69,13 @@ describe('Model', function () {
 		obj.prop = 1;
 		JSON.parse(JSON.stringify(obj)).should.eql({prop: 1});
 	});
+	it('should preserve unbound properties on JSON.stringify', function () {
+		var SomeModel = Model(['prop', 'prop2']);
+		var obj = new SomeModel();
+		obj.prop = 1;
+		obj.unbound = 1;
+		JSON.parse(JSON.stringify(obj)).should.eql({prop: 1, unbound: 1});
+	});
 	it('should emit a construct event', function (done) {
 		var SomeModel = Model(['prop', 'prop2']);
 		SomeModel.on('construct', function (instance) {
