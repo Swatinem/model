@@ -167,6 +167,26 @@ describe('Model', function () {
 			obj.prop.should.eql(1);
 			calls.should.eql(2);
 		});
+		it('should always provide initial values', function (done) {
+			var SomeModel = new Model();
+			SomeModel.use(function (Model) {
+				Model.on('construct', function (instance, initial) {
+					should.exist(initial);
+					initial.should.eql({});
+					done();
+				});
+			});
+			new SomeModel();
+		});
+		it('should allow skipping certain construct time variables', function () {
+			var SomeModel = new Model(['skip', 'noskip']);
+			SomeModel.use(function (Model) {
+				Model._skip.skip = true;
+			});
+			var obj = new SomeModel({skip: 'foo', noskip: 'bar'});
+			should.not.exist(obj.skip);
+			obj.noskip.should.eql('bar');
+		});
 	});
 });
 
