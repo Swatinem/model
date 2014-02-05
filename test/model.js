@@ -112,6 +112,11 @@ describe('Model', function () {
 		var obj = new SomeModel({prop: 1});
 	});
 	describe('Extensibility', function () {
+		it('should make properties configurable', function () {
+			var SomeModel = new Model(['prop']);
+			var desc = Object.getOwnPropertyDescriptor(SomeModel.prototype, 'prop');
+			desc.configurable.should.be.true;
+		});
 		it('should take an array of extensions', function () {
 			var SomeModel = Model(['prop', 'prop2']);
 			var calls = 0;
