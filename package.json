@@ -2,7 +2,7 @@
   "name": "model",
   "private": true,
   "description": "transparent ES5 models",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "keywords": [],
   "main": "./index",
   "maintainers": [
