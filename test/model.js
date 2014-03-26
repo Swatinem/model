@@ -39,13 +39,13 @@ describe('Model', function () {
 		var SomeModel = Model(['prop', 'prop2']);
 		var obj = new SomeModel();
 		var calls = 0;
-		obj.once('change', function (name, val, old) {
+		obj.once('change', function (name, val) {
 			calls++;
 			name.should.eql('prop');
 			val.should.eql(1);
 		});
 		obj.prop = 1;
-		obj.once('change', function (name, val, old) {
+		obj.once('change', function (name, val) {
 			calls++;
 			name.should.eql('prop2');
 			val.should.eql(2);
@@ -56,7 +56,7 @@ describe('Model', function () {
 	it('should allow passing an object of properties and metadata', function (done) {
 		var SomeModel = Model({prop: {some: 'metadata'}});
 		var obj = new SomeModel();
-		obj.once('change', function (name, val, old) {
+		obj.once('change', function (name, val) {
 			name.should.eql('prop');
 			val.should.eql(1);
 			done();
@@ -82,7 +82,7 @@ describe('Model', function () {
 			instance.should.be.an.instanceof(SomeModel);
 			done();
 		});
-		var obj = new SomeModel();
+		new SomeModel();
 	});
 	it('should delegate change events to the model', function (done) {
 		var SomeModel = Model().attr('prop');
@@ -104,12 +104,12 @@ describe('Model', function () {
 	});
 	it('should support constructing from a plain object', function (done) {
 		var SomeModel = Model().attr('prop');
-		SomeModel.once('change prop', function (instance, val, old) {
+		SomeModel.once('change prop', function (instance, val) {
 			instance.should.be.an.instanceof(SomeModel);
 			val.should.eql(1);
 			done();
 		});
-		var obj = new SomeModel({prop: 1});
+		new SomeModel({prop: 1});
 	});
 	describe('Extensibility', function () {
 		it('should make properties configurable', function () {
@@ -130,7 +130,7 @@ describe('Model', function () {
 				Model.prototype.save = function () {
 					this._data.should.eql({prop: 1});
 					done();
-				}
+				};
 			});
 			var obj = new SomeModel();
 			obj.prop = 1;
@@ -142,7 +142,7 @@ describe('Model', function () {
 				Model.validate = function (prop) {
 					prop.should.eql('prop');
 					done();
-				}
+				};
 			});
 			SomeModel.validate('prop');
 		});
@@ -160,12 +160,12 @@ describe('Model', function () {
 					this._dirty[name] = val;
 					name.should.eql('prop');
 					set.call(this, name, val);
-				}
+				};
 				Model.prototype._get = function (name) {
 					calls++;
 					this._dirty.should.eql({prop: 1});
 					return get.call(this, name);
-				}
+				};
 			});
 			var obj = new SomeModel();
 			obj.prop = 1;

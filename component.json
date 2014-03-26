@@ -4,9 +4,9 @@
   "version": "0.0.4",
   "description": "transparent ES5 models",
   "keywords": [],
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": [
-    "lib/index.js"
+    "index.js"
   ],
   "dependencies": {
     "component/emitter": "*"
